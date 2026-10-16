@@ -1,0 +1,23 @@
+# dados reais de lead (nome, telefone, conversa) nunca vão pro git
+data/*
+!data/.gitkeep
+*.lock
+*.log
+.m3-vistos.json
+.pub-vistos.json
+.vigia-zap.*
+.acessos-erro.log
+
+# prints, previas locais e lixo de build
+_shots/
+/previas/
+__pycache__/
+*.pyc
+node_modules/
+
+# segredos
+.env
+.env.*
+!.env.example
+
+.DS_Store

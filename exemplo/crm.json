@@ -1,0 +1,563 @@
+{
+  "contatos_avulsos": [],
+  "negocios": {
+    "ateliefiodeouro": {
+      "acessos": [],
+      "atualizado_em": "2026-10-03 11:35",
+      "cidade": "Cidade Exemplo",
+      "cobrancas": [
+        {
+          "auto": true,
+          "base": "2026-10-03 11:34",
+          "criada_em": "2026-10-03 11:35",
+          "feita": true,
+          "feita_em": "2026-10-03 11:35",
+          "id": "a0bc4f5",
+          "motivo": "Msg 2 sem resposta desde 03/10",
+          "notificada_em": "",
+          "quando": "2026-10-05 10:00",
+          "regra": "msg2",
+          "resolvida": "não vale mais",
+          "texto_sugerido": ""
+        }
+      ],
+      "contatos": [
+        {
+          "fonte": "manual",
+          "id": "ke50d167",
+          "nome": "",
+          "nota": "",
+          "papel": "dono",
+          "whatsapp": "5500000000004"
+        }
+      ],
+      "criado_em": "2026-10-01 10:00",
+      "envios": {
+        "m1": {
+          "cobranca": "",
+          "etapa_antes": "previa",
+          "etapa_desde_antes": "2026-10-01 10:00",
+          "etapa_desde_fonte_antes": "criacao",
+          "etapa_seq_antes": 0,
+          "evento": {
+            "quando": "2026-10-03 11:00",
+            "texto": "Prévia pronta → Abordado (msg 1/2)"
+          },
+          "moveu": true,
+          "msg": "m343a346aeb",
+          "quando": "2026-10-03 11:00"
+        }
+      },
+      "etapa": "perdido",
+      "etapa_desde": "2026-10-03 11:35",
+      "etapa_desde_fonte": "movimento",
+      "etapa_seq": 1792174157.9009988,
+      "eventos": [
+        {
+          "quando": "2026-10-01 10:00",
+          "texto": "Criado em Prévia pronta"
+        },
+        {
+          "quando": "2026-10-03 11:00",
+          "texto": "Prévia pronta → Abordado (msg 1/2)"
+        },
+        {
+          "quando": "2026-10-03 11:35",
+          "texto": "Abordado (msg 1/2) → Perdido (Disse que não tem interesse)"
+        }
+      ],
+      "instagram": "atelie.fiodeouro.exemplo",
+      "mensagens": [
+        {
+          "anexo": "",
+          "de": "eu",
+          "fonte": "marcado",
+          "id": "m343a346aeb",
+          "quando": "2026-10-03 11:00",
+          "texto": "Bom dia, tudo bem?"
+        },
+        {
+          "anexo": "",
+          "de": "eles",
+          "fonte": "print",
+          "id": "m7ed23e445b",
+          "quando": "2026-10-03 11:28",
+          "texto": "Não temos interesse, obrigada"
+        },
+        {
+          "anexo": "",
+          "de": "eu",
+          "fonte": "print",
+          "id": "m84099aeafa",
+          "quando": "2026-10-03 11:34",
+          "texto": "Imagina, obrigado pelo retorno! Bom trabalho."
+        }
+      ],
+      "motivo_perda": "Disse que não tem interesse",
+      "nicho": "costura",
+      "nome": "Ateliê Fio de Ouro",
+      "previa": {
+        "appId": "",
+        "og": "",
+        "publicada": false,
+        "url": ""
+      },
+      "proposta": {
+        "enviada_em": "",
+        "forma": "",
+        "pdf": "",
+        "valor": null
+      },
+      "proximo_em": "",
+      "proximo_passo": "",
+      "slug": "ateliefiodeouro",
+      "tags": [
+        "exemplo"
+      ],
+      "textos": {}
+    },
+    "doceriaaurora": {
+      "acessos": [],
+      "atualizado_em": "2026-10-01 10:00",
+      "cidade": "Cidade Exemplo",
+      "cobrancas": [],
+      "contatos": [
+        {
+          "fonte": "manual",
+          "id": "kaddfdee",
+          "nome": "Contato da bio",
+          "nota": "",
+          "papel": "outro",
+          "whatsapp": "5500000000001"
+        }
+      ],
+      "criado_em": "2026-10-01 10:00",
+      "envios": {},
+      "etapa": "previa",
+      "etapa_desde": "2026-10-01 10:00",
+      "etapa_desde_fonte": "criacao",
+      "eventos": [
+        {
+          "quando": "2026-10-01 10:00",
+          "texto": "Criado em Prévia pronta"
+        }
+      ],
+      "instagram": "doceria.aurora.exemplo",
+      "mensagens": [],
+      "motivo_perda": "",
+      "nicho": "confeitaria",
+      "nome": "Doceria Aurora",
+      "previa": {
+        "appId": "",
+        "og": "",
+        "publicada": true,
+        "url": "https://doceriaaurora.example.com"
+      },
+      "proposta": {
+        "enviada_em": "",
+        "forma": "",
+        "pdf": "",
+        "valor": null
+      },
+      "proximo_em": "",
+      "proximo_passo": "",
+      "slug": "doceriaaurora",
+      "tags": [
+        "exemplo",
+        "encomenda"
+      ],
+      "textos": {}
+    },
+    "pousadavaleazul": {
+      "acessos": [
+        {
+          "d": "celular",
+          "q": "2026-10-05 11:06:10",
+          "t": "previa_gerada",
+          "v": "a1b2c3"
+        },
+        {
+          "d": "celular",
+          "q": "2026-10-05 11:09:42",
+          "t": "abriu",
+          "v": "a1b2c3"
+        },
+        {
+          "d": "desktop",
+          "q": "2026-10-06 09:31:05",
+          "t": "abriu",
+          "v": "d4e5f6"
+        }
+      ],
+      "atualizado_em": "2026-10-05 11:20",
+      "cidade": "Serra Exemplo",
+      "cobrancas": [
+        {
+          "auto": true,
+          "base": "2026-10-05 11:05",
+          "criada_em": "2026-10-05 11:05",
+          "feita": true,
+          "feita_em": "2026-10-05 11:05",
+          "id": "ac46c79",
+          "motivo": "Link enviado 05/10, sem resposta (D+1)",
+          "notificada_em": "",
+          "quando": "2026-10-06 10:00",
+          "regra": "link",
+          "resolvida": "mensagem nova",
+          "texto_sugerido": "Oi! Uma dúvida pra deixar do jeito de vocês: o que você quer que apareça primeiro na página, os produtos ou as fotos do espaço?"
+        },
+        {
+          "auto": true,
+          "base": "2026-10-05 10:17",
+          "criada_em": "2026-10-05 10:17",
+          "feita": true,
+          "feita_em": "2026-10-05 10:17",
+          "id": "a43a4b6",
+          "motivo": "Msg 2 sem resposta desde 05/10",
+          "notificada_em": "",
+          "quando": "2026-10-07 10:00",
+          "regra": "msg2",
+          "resolvida": "mensagem nova",
+          "texto_sugerido": ""
+        },
+        {
+          "auto": true,
+          "base": "2026-10-06 10:05",
+          "criada_em": "2026-10-05 11:05",
+          "feita": true,
+          "feita_em": "2026-10-06 10:06",
+          "id": "a7faabe",
+          "motivo": "Link enviado 06/10, sem resposta (D+1)",
+          "notificada_em": "",
+          "quando": "2026-10-07 10:00",
+          "regra": "link",
+          "resolvida": "mensagem nova",
+          "texto_sugerido": "Oi! Uma dúvida pra deixar do jeito de vocês: o que você quer que apareça primeiro na página, os produtos ou as fotos do espaço?"
+        },
+        {
+          "auto": true,
+          "base": "2026-10-06 10:06",
+          "criada_em": "2026-10-06 10:06",
+          "feita": true,
+          "feita_em": "2026-10-06 10:06",
+          "id": "a8c3c23",
+          "motivo": "Proposta enviada 06/10, sem resposta",
+          "notificada_em": "",
+          "quando": "2026-10-09 10:00",
+          "regra": "proposta",
+          "resolvida": "cobrança manual",
+          "texto_sugerido": "Oi, tudo bem? Conseguiu ver a proposta? Qualquer dúvida me chama."
+        },
+        {
+          "auto": false,
+          "criada_em": "2026-10-06 10:06",
+          "feita": false,
+          "feita_em": "",
+          "id": "c1",
+          "motivo": "Sem resposta da proposta",
+          "notificada_em": "",
+          "quando": "2026-10-09 10:00",
+          "texto_sugerido": "Oi, tudo bem? Posso começar? Você só paga a primeira parte quando aprovar a página no ar."
+        }
+      ],
+      "contatos": [
+        {
+          "fonte": "manual",
+          "id": "kf1400d2",
+          "nome": "Dona (fictícia)",
+          "nota": "",
+          "papel": "dono",
+          "whatsapp": "5500000000003"
+        }
+      ],
+      "criado_em": "2026-10-01 10:00",
+      "envios": {
+        "m1": {
+          "cobranca": "",
+          "etapa_antes": "previa",
+          "etapa_desde_antes": "2026-10-01 10:00",
+          "etapa_desde_fonte_antes": "criacao",
+          "etapa_seq_antes": 0,
+          "evento": {
+            "quando": "2026-10-05 10:15",
+            "texto": "Prévia pronta → Abordado (msg 1/2)"
+          },
+          "moveu": true,
+          "msg": "m8e23149fcc",
+          "quando": "2026-10-05 10:15"
+        },
+        "m2": {
+          "cobranca": "",
+          "etapa_antes": "abordado",
+          "etapa_desde_antes": "2026-10-05 10:15",
+          "etapa_desde_fonte_antes": "movimento",
+          "etapa_seq_antes": 1792174156.684981,
+          "moveu": false,
+          "msg": "me10553949a",
+          "quando": "2026-10-05 10:17"
+        },
+        "m3": {
+          "cobranca": "",
+          "etapa_antes": "abordado",
+          "etapa_desde_antes": "2026-10-05 10:15",
+          "etapa_desde_fonte_antes": "movimento",
+          "etapa_seq_antes": 1792174156.684981,
+          "evento": {
+            "quando": "2026-10-05 11:05",
+            "texto": "Abordado (msg 1/2) → Link enviado"
+          },
+          "moveu": true,
+          "msg": "med60f32663",
+          "quando": "2026-10-05 11:05"
+        }
+      },
+      "etapa": "proposta",
+      "etapa_desde": "2026-10-06 10:06",
+      "etapa_desde_fonte": "movimento",
+      "etapa_seq": 1792174157.1899881,
+      "eventos": [
+        {
+          "quando": "2026-10-01 10:00",
+          "texto": "Criado em Prévia pronta"
+        },
+        {
+          "quando": "2026-10-05 10:15",
+          "texto": "Prévia pronta → Abordado (msg 1/2)"
+        },
+        {
+          "quando": "2026-10-05 11:05",
+          "texto": "Abordado (msg 1/2) → Link enviado"
+        },
+        {
+          "quando": "2026-10-05 11:09",
+          "texto": "Abriu a prévia (celular)"
+        },
+        {
+          "quando": "2026-10-06 09:31",
+          "texto": "Abriu a prévia (desktop)"
+        },
+        {
+          "quando": "2026-10-06 10:06",
+          "texto": "Proposta: R$ 500"
+        },
+        {
+          "quando": "2026-10-06 10:06",
+          "texto": "Link enviado → Proposta enviada"
+        }
+      ],
+      "instagram": "pousada.valeazul.exemplo",
+      "mensagens": [
+        {
+          "anexo": "",
+          "de": "eu",
+          "fonte": "marcado",
+          "id": "m8e23149fcc",
+          "quando": "2026-10-05 10:15",
+          "texto": "Bom dia, tudo bem?"
+        },
+        {
+          "anexo": "",
+          "de": "eu",
+          "fonte": "marcado",
+          "id": "me10553949a",
+          "quando": "2026-10-05 10:17",
+          "texto": "Aqui é o Fulano, faço sites aqui na região. Montei uma prévia de página pra Pousada Vale Azul, com os quartos, o café da manhã e um botão que já pede a reserva com as datas no WhatsApp. Posso te mandar o link?"
+        },
+        {
+          "anexo": "",
+          "de": "eles",
+          "fonte": "print",
+          "id": "md5e081a2ee",
+          "quando": "2026-10-05 11:02",
+          "texto": "Oi! Pode mandar sim"
+        },
+        {
+          "anexo": "",
+          "de": "eu",
+          "fonte": "marcado",
+          "id": "med60f32663",
+          "quando": "2026-10-05 11:05",
+          "texto": "Tá aqui: https://pousadavaleazul.example.com É uma proposta, não aparece no Google, só quem tem o link vê."
+        },
+        {
+          "anexo": "",
+          "de": "eles",
+          "fonte": "print",
+          "id": "mfc8cf5d6c2",
+          "quando": "2026-10-06 09:40",
+          "texto": "Gostei bastante. Quanto fica?"
+        },
+        {
+          "anexo": "",
+          "de": "eu",
+          "fonte": "print",
+          "id": "m9d7666f0f0",
+          "quando": "2026-10-06 10:05",
+          "texto": "Fica R$ 500: metade pra começar e metade quando estiver no ar. Posso começar? Me manda as fotos dos quartos que eu deixo no ar essa semana."
+        }
+      ],
+      "motivo_perda": "",
+      "nicho": "pousada",
+      "nome": "Pousada Vale Azul",
+      "previa": {
+        "appId": "",
+        "og": "",
+        "publicada": true,
+        "url": "https://pousadavaleazul.example.com"
+      },
+      "proposta": {
+        "enviada_em": "2026-10-06",
+        "forma": "2x R$ 250 Pix",
+        "pdf": "",
+        "valor": 500
+      },
+      "proximo_em": "",
+      "proximo_passo": "Esperar as fotos dos quartos",
+      "slug": "pousadavaleazul",
+      "tags": [
+        "exemplo"
+      ],
+      "textos": {
+        "m2": "Aqui é o Fulano, faço sites aqui na região. Montei uma prévia de página pra Pousada Vale Azul, com os quartos, o café da manhã e um botão que já pede a reserva com as datas no WhatsApp. Posso te mandar o link?",
+        "m3": "Tá aqui: https://pousadavaleazul.example.com É uma proposta, não aparece no Google, só quem tem o link vê."
+      }
+    },
+    "studiolirio": {
+      "acessos": [],
+      "atualizado_em": "2026-10-06 15:25",
+      "cidade": "Cidade Exemplo",
+      "cobrancas": [
+        {
+          "auto": true,
+          "base": "2026-10-06 15:01",
+          "criada_em": "2026-10-06 15:01",
+          "feita": true,
+          "feita_em": "2026-10-06 15:01",
+          "id": "aa3ca00",
+          "motivo": "Msg 2 sem resposta desde 06/10",
+          "notificada_em": "",
+          "quando": "2026-10-08 10:00",
+          "regra": "msg2",
+          "resolvida": "mensagem nova",
+          "texto_sugerido": ""
+        },
+        {
+          "auto": false,
+          "criada_em": "2026-10-06 15:25",
+          "feita": false,
+          "feita_em": "",
+          "id": "c1",
+          "motivo": "Dona volta segunda",
+          "notificada_em": "",
+          "quando": "2026-10-12 10:00",
+          "texto_sugerido": "Oi, tudo bem? A recepção me disse que você voltava hoje. Montei uma prévia de página pro Studio Lírio, posso te mandar o link?"
+        }
+      ],
+      "contatos": [
+        {
+          "fonte": "manual",
+          "id": "k7a5c53c",
+          "nome": "Recepção",
+          "nota": "",
+          "papel": "atendente",
+          "whatsapp": "5500000000002"
+        }
+      ],
+      "criado_em": "2026-10-02 10:00",
+      "envios": {
+        "m1": {
+          "cobranca": "",
+          "etapa_antes": "previa",
+          "etapa_desde_antes": "2026-10-02 10:00",
+          "etapa_desde_fonte_antes": "criacao",
+          "etapa_seq_antes": 0,
+          "evento": {
+            "quando": "2026-10-06 15:00",
+            "texto": "Prévia pronta → Abordado (msg 1/2)"
+          },
+          "moveu": true,
+          "msg": "m6b607750aa",
+          "quando": "2026-10-06 15:00"
+        },
+        "m2a": {
+          "cobranca": "",
+          "etapa_antes": "abordado",
+          "etapa_desde_antes": "2026-10-06 15:00",
+          "etapa_desde_fonte_antes": "movimento",
+          "etapa_seq_antes": 1792174157.358921,
+          "moveu": false,
+          "msg": "m1a677f5403",
+          "quando": "2026-10-06 15:01"
+        }
+      },
+      "etapa": "abordado",
+      "etapa_desde": "2026-10-06 15:00",
+      "etapa_desde_fonte": "movimento",
+      "etapa_seq": 1792174157.358921,
+      "eventos": [
+        {
+          "quando": "2026-10-02 10:00",
+          "texto": "Criado em Prévia pronta"
+        },
+        {
+          "quando": "2026-10-06 15:00",
+          "texto": "Prévia pronta → Abordado (msg 1/2)"
+        },
+        {
+          "quando": "2026-10-06 15:25",
+          "texto": "Recepção pediu pra falar com a dona na segunda"
+        }
+      ],
+      "instagram": "studio.lirio.exemplo",
+      "mensagens": [
+        {
+          "anexo": "",
+          "de": "eu",
+          "fonte": "marcado",
+          "id": "m6b607750aa",
+          "quando": "2026-10-06 15:00",
+          "texto": "Boa tarde, tudo bem?"
+        },
+        {
+          "anexo": "",
+          "de": "eu",
+          "fonte": "marcado",
+          "id": "m1a677f5403",
+          "quando": "2026-10-06 15:01",
+          "texto": "Oi, tudo bem? Montei uma prévia de página pro Studio Lírio. Consegue passar pra dona, ou me dizer o melhor horário de falar com ela?"
+        },
+        {
+          "anexo": "",
+          "de": "eles",
+          "fonte": "print",
+          "id": "m658f5935e6",
+          "quando": "2026-10-06 15:20",
+          "texto": "A dona volta segunda, pode chamar ela então"
+        }
+      ],
+      "motivo_perda": "",
+      "nicho": "sobrancelha",
+      "nome": "Studio Lírio",
+      "previa": {
+        "appId": "",
+        "og": "",
+        "publicada": true,
+        "url": "https://studiolirio.example.com"
+      },
+      "proposta": {
+        "enviada_em": "",
+        "forma": "",
+        "pdf": "",
+        "valor": null
+      },
+      "proximo_em": "",
+      "proximo_passo": "",
+      "slug": "studiolirio",
+      "tags": [
+        "exemplo"
+      ],
+      "textos": {}
+    }
+  },
+  "versao": 1
+}

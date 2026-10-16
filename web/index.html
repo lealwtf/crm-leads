@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRM de leads</title>
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/app.css">
+<!--
+Decisões (ferramenta interna densa, não landing). Referência de qualidade: Linear, Attio, Pipedrive novo.
+1. Quem usa: o dono do funil, olhando o funil de relance e abrindo um negócio pra ver a conversa. Quem preenche quase tudo é o
+   agente pela CLI, então a tela é de LEITURA: nenhum campo aberto por padrão no painel, edição só sob "Editar" ou clique.
+   Objeto real: o card do negócio e a conversa do WhatsApp.
+2. Ordem do olhar: (1) o que pede ação hoje (faixa Hoje / selo responder), (2) nome do negócio, (3) há quanto tempo está na etapa.
+3. Família: system-ui (tom neutro de ferramenta). Tamanhos 12,8 / 14 / 16 / 20. Hierarquia por peso, não por cor.
+4. Superfície: cinza neutro com cards brancos (escuro: cards um degrau acima do fundo), sidebar um tom abaixo do fundo.
+   Acento: tinta (quase preto) no botão; cor só pra estado (vermelho atrasado, âmbar pede ação, verde só no WhatsApp).
+5. Estrutura: sidebar fixa recolhível (Hoje, Funil, Contatos) que vira barra inferior no celular. Kanban com colunas
+   encolhíveis e redimensionáveis (estado no localStorage). Só começam encolhidas as vazias, Perdido e Retomar (coluna com
+   card nunca some sozinha); largura padrão 232px. Cards do mais novo na etapa pro mais velho (etapa_desde; quando o dado
+   é estimado pelo histórico o tempo aparece com "~").
+6. Painel do negócio: topo com etapa, Abrir WhatsApp e Cobrar (popover com chips), próximo passo como texto que vira
+   campo ao clicar, contato/prévia/proposta como linhas de leitura, o resto em "Detalhes" recolhido com "Editar".
+7. Contatos: "+ Novo contato" fixo na barra lateral (e na barra inferior do celular), vale em qualquer vista. Pessoas cadastradas uma a uma (nome + WhatsApp obrigatórios; negócio, papel e nota opcionais em "Mais").
+8. Estado à vista: "atualizado hh:mm:ss" e aviso quando o arquivo mudou pela CLI (polling 3 s).
+9. Fila de envio: UM lead por vez em destaque, com a Msg 1 como bolha do WhatsApp (o objeto real que ele manda), e só 4
+   ações (Copiar, Abrir no WhatsApp, Enviei, Pular) com atalho C / Enter / seta. Próximos em lista compacta ao lado. Abaixo,
+   "Msg 2 a mandar" em linhas, com a escolha dono/atendente. Enviei grava a mensagem e move o funil; o toast tem Desfazer.
+10. Mensagens no painel: aba própria, cada fase recolhida numa linha; só a próxima a mandar abre sozinha. Enviada vira
+   "enviada 13/10 14:01" + Desfazer. Texto vem do roteiro.md ao vivo; "Editar texto" só sob clique.
+11. Painel (v2): números em cima (funil em 5 cards grandes + R$ ganho, taxa de passagem entre eles),
+   logo abaixo do título um filtro global (recorte, período pela Msg 1, cidade, nicho) guardado no hash #painel?...;
+   depois gráficos em SVG à mão (linha por dia e rosca por nicho, fatia clicável filtra), onde negam em barras, tabela
+   por nicho e lista de leads ordenáveis, e o tempo real (respostas, aberturas; agentes, log e Instagram só se configurados) no fim. Contas no cliente sobre
+   /api/painel (leads crus), relido a cada 4 s só com a vista aberta. Cor categórica só dentro dos gráficos.
+-->
+</head>
+<body>
+<div class="app" id="app">
+  <nav class="lateral" id="lateral" aria-label="Seções">
+    <div class="marca">
+      <span class="logo" aria-hidden="true">C</span><span class="rot">CRM de leads</span>
+      <button class="btn-icone lat-rec" id="lat-rec" aria-label="Recolher barra lateral" title="Recolher barra lateral">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M2.5 3h11v10h-11zM6 3v10" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <a href="#" class="nav-item" data-ir="painel" title="Painel">
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 13.5V9M6.2 13.5V5.5M9.8 13.5V7.5M13.5 13.5V2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="rot">Painel</span><span class="cont" id="n-painel"></span>
+    </a>
+    <a href="#" class="nav-item" data-ir="hoje" title="Hoje">
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5.6" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M8 5v3.2l2 1.3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      <span class="rot">Hoje</span><span class="cont" id="n-hoje"></span>
+    </a>
+    <a href="#" class="nav-item" data-ir="funil" title="Funil">
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 3v10M6.5 3v7M10.5 3v9M14 3v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="rot">Funil</span><span class="cont" id="n-funil"></span>
+    </a>
+    <a href="#" class="nav-item" data-ir="fila" title="Fila de envio">
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.2 7.6l11.3-5-3.7 11.1-2.6-4.4z M7.2 9.3l6.3-6.7" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      <span class="rot"><span class="rot-l">Fila de envio</span><span class="rot-c">Fila</span></span><span class="cont" id="n-fila"></span>
+    </a>
+    <a href="#" class="nav-item" data-ir="contatos" title="Contatos">
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="5.5" r="2.6" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M3 13.5c.6-2.4 2.6-3.6 5-3.6s4.4 1.2 5 3.6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      <span class="rot">Contatos</span><span class="cont" id="n-contatos"></span>
+    </a>
+    <button type="button" class="nav-item nav-novo" id="novo-contato" title="Novo contato">
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="rot"><span class="rot-l">Novo contato</span><span class="rot-c">Novo</span></span>
+    </button>
+    <div class="lat-pe"><span class="sinc" id="sinc" aria-live="polite"></span></div>
+  </nav>
+
+  <div class="principal">
+    <header class="topo">
+      <h1 id="titulo">Funil</h1>
+      <span class="resumo" id="resumo"></span>
+      <div class="topo-dir">
+        <input id="f-busca" type="search" placeholder="Buscar" aria-label="Buscar">
+        <div class="pop-wrap" id="filtros-wrap">
+          <button class="btn sec" data-pop aria-expanded="false" id="f-toggle">Filtrar<span class="f-n" id="f-n"></span></button>
+          <div class="pop pop-filtros">
+            <select id="f-cidade" aria-label="Cidade"><option value="">Todas as cidades</option></select>
+            <select id="f-nicho" aria-label="Nicho"><option value="">Todos os nichos</option></select>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="faixa" id="faixa" aria-label="Hoje"></div>
+    <main class="quadro" id="quadro" aria-label="Funil"></main>
+    <main class="vista" id="v-painel" aria-label="Painel" hidden></main>
+    <main class="vista" id="v-hoje" aria-label="Hoje" hidden></main>
+    <main class="vista" id="v-contatos" aria-label="Contatos" hidden></main>
+    <main class="vista" id="v-fila" aria-label="Fila de envio" hidden></main>
+  </div>
+</div>
+
+<aside class="painel" id="painel" aria-hidden="true">
+  <div class="painel-cab">
+    <div class="painel-tit">
+      <h2 id="p-nome"></h2>
+      <span id="p-sub" class="p-sub"></span>
+    </div>
+    <button class="btn-icone" id="p-fechar" aria-label="Fechar painel" title="Fechar (Esc)">
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9m0-9l-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="abas" role="tablist">
+    <button role="tab" data-aba="dados" id="aba-dados">Resumo</button>
+    <button role="tab" data-aba="msgs" id="aba-msgs">Mensagens</button>
+    <button role="tab" data-aba="whats" id="aba-whats">WhatsApp</button>
+  </nav>
+  <section class="aba-corpo" id="corpo-dados" role="tabpanel"></section>
+  <section class="aba-corpo" id="corpo-msgs" role="tabpanel"></section>
+  <section class="aba-corpo whats" id="corpo-whats" role="tabpanel">
+    <div class="chat-wa" id="chat-wa"></div>
+    <div class="chat" id="chat"></div>
+    <div class="registrar" id="registrar"><button type="button" class="btn sec" id="abrir-compor">Registrar mensagem</button></div>
+    <form class="compor" id="compor" autocomplete="off" hidden>
+      <div class="compor-linha topo-compor">
+        <div class="lado" role="radiogroup" aria-label="Quem falou">
+          <label><input type="radio" name="de" value="eu" checked><span>Eu</span></label>
+          <label><input type="radio" name="de" value="eles"><span>Eles</span></label>
+        </div>
+        <input type="text" name="quando" aria-label="Quando (dd/mm hh:mm)" placeholder="13/10 10:39" inputmode="numeric" autocomplete="off" required>
+        <button class="btn-icone mais" type="button" id="compor-mais" aria-expanded="false" aria-controls="compor-extras" aria-label="Fonte e anexo" title="Fonte e anexo"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="compor-extras" id="compor-extras">
+        <select name="fonte" aria-label="Fonte da mensagem"><option value="print">Fonte: print</option><option value="whatsapp-tela">Fonte: tela do WhatsApp</option><option value="manual">Fonte: manual</option></select>
+        <input type="text" name="anexo" placeholder="Anexo (arquivo.pdf ou link)" aria-label="Anexo">
+      </div>
+      <div class="compor-linha">
+        <textarea name="texto" rows="2" placeholder="Mensagem" aria-label="Mensagem"></textarea>
+        <button class="btn-txt" type="button" id="fechar-compor">Fechar</button>
+        <button class="btn" type="submit">Gravar</button>
+      </div>
+    </form>
+  </section>
+</aside>
+<div class="veu" id="veu"></div>
+
+<dialog class="dlg" id="dlg-contato" aria-labelledby="dlg-tit">
+  <form method="dialog" id="form-contato" autocomplete="off">
+    <h2 id="dlg-tit">Novo contato</h2>
+    <label class="campo"><span>Nome</span><input name="nome" required></label>
+    <label class="campo"><span>WhatsApp</span><input name="whatsapp" inputmode="tel" placeholder="(00) 00000-0000" required></label>
+    <label class="campo"><span>Negócio <i>opcional</i></span><input name="negocio" list="dl-negocios" placeholder="Buscar negócio"></label>
+    <datalist id="dl-negocios"></datalist>
+    <details class="dlg-mais">
+      <summary>Mais</summary>
+      <label class="campo"><span>Papel</span><select name="papel"><option value="">Sem papel</option><option>dono</option><option>atendente</option><option>sócio</option><option>outro</option></select></label>
+      <label class="campo"><span>Nota</span><input name="nota" placeholder="Uma linha"></label>
+    </details>
+    <div class="dlg-acoes">
+      <button class="btn-txt perigo" type="button" id="dlg-apagar" hidden>Apagar</button>
+      <span class="esp"></span>
+      <button class="btn sec" type="button" id="dlg-cancelar">Cancelar</button>
+      <button class="btn" type="submit" id="dlg-salvar">Salvar</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="/app.js"></script>
+</body>
+</html>
