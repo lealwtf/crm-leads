@@ -124,7 +124,7 @@ def estado():
 #   CRM_LOG_MD:       arquivo markdown de log do dia a dia; entram as linhas "- dd/mm hh:mm texto".
 #   CRM_IG_ESTADO:    JSON do freio do Instagram ({frio_ate, n}), ex.: <IG_FREIO_DIR>/ig-freio.json do ig-get.py.
 JOURNALS = os.environ.get("CRM_AGENTES_GLOB", "")
-ESTADO_MD = os.environ.get("CRM_LOG_MD", "")
+LOG_MD = os.environ.get("CRM_LOG_MD", "")
 IG_JSON = os.environ.get("CRM_IG_ESTADO", "")
 JANELA_WF_S = 2 * 3600
 
@@ -225,10 +225,10 @@ def painel_workflows(agora):
 
 
 def painel_log(n=8):
-    if not ESTADO_MD:
+    if not LOG_MD:
         return []
     try:
-        with open(os.path.expanduser(ESTADO_MD), encoding="utf-8") as f:
+        with open(os.path.expanduser(LOG_MD), encoding="utf-8") as f:
             linhas = f.read().splitlines()
     except OSError:
         return []
@@ -435,7 +435,7 @@ def painel():
         "gerado_em": time.strftime("%H:%M:%S"),
         "agora": {"workflows": painel_workflows(agora), "log": painel_log(), "recebidas": recebidas[:40],
                   "instagram": painel_ig(agora), "aberturas": painel_aberturas(ns),
-                  "fontes": {"agentes": bool(JOURNALS), "log": bool(ESTADO_MD), "instagram": bool(IG_JSON)}},
+                  "fontes": {"agentes": bool(JOURNALS), "log": bool(LOG_MD), "instagram": bool(IG_JSON)}},
         "etapas": [{"id": e, "nome": nm} for e, nm in crm.ETAPAS],
         "motivos": [{"id": k, "nome": nm} for k, nm in NEGAM],
         "categorias": [c for c, _ in NICHO_REGRAS] + ["Outros"],

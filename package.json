@@ -1,0 +1,8 @@
+{
+  "name": "crm-leads",
+  "private": true,
+  "description": "Dependencias dos scripts de apoio (verificador de previa).",
+  "dependencies": {
+    "playwright-core": "1.64.1"
+  }
+}

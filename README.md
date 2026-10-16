@@ -10,7 +10,7 @@ Mini CRM local para prospecção de pequenos negócios pelo WhatsApp: funil kanb
 
 ## Instalação
 
-Precisa de Python 3.9 ou mais novo. Nada para instalar.
+Precisa de Python 3.9 ou mais novo. O CRM não precisa instalar nada; os scripts da skill pedem `npm i` na raiz do clone e o Chrome.
 
 ```bash
 git clone <este repo> crm-leads && cd crm-leads
@@ -189,7 +189,7 @@ O fluxo completo de captação (como achar o lead, montar a prévia, revisar, pu
 
 ## Instalando a skill
 
-A skill é uma pasta com `SKILL.md` (frontmatter `name` e `description`) e referências. Copie `skills/captacao-leads/` para a pasta de skills do seu harness de agente (global ou do projeto), ou aponte o agente para `skills/captacao-leads/SKILL.md` no briefing.
+A skill é uma pasta com `SKILL.md` (frontmatter `name` e `description`) e referências. Copie `skills/captacao-leads/` para a pasta de skills do seu harness de agente (global ou do projeto), ou aponte o agente para `skills/captacao-leads/SKILL.md` no briefing. Com a skill copiada para fora do clone, exporte `PLAYWRIGHT_CORE=<clone>/node_modules/playwright-core/index.mjs` para os scripts acharem o playwright-core.
 
 ## Licença
 

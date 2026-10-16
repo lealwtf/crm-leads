@@ -23,7 +23,7 @@ echo $?    # 0 ok, 3 resfriamento/bloqueio
 ```
 
 - Por padrão busca com `urllib` (sem dependência). Para páginas que só renderizam com JavaScript, instale `playwright-core` e um Chrome/Chromium e use `IG_NAVEGADOR=1`: o script chama `scripts/ig-pw.mjs` (headless, contexto anônimo novo, sem login). Caminho do módulo: `PLAYWRIGHT_CORE=/caminho/para/playwright-core/index.mjs` se não estiver resolvível.
-- `IG_CANAL` (só com `IG_NAVEGADOR=1`): `chrome` (padrão) usa o Chrome instalado na máquina; `chromium` usa o Chromium baixado pelo Playwright (`npx playwright-core install chromium`). Use `chromium` quando não houver Chrome instalado (servidor, CI, container).
+- `IG_CANAL` (aceita também `CHECAR_CANAL`; só com `IG_NAVEGADOR=1`): `chrome` (padrão) usa o Chrome instalado na máquina; `chromium` usa o Chromium baixado pelo Playwright (`npx playwright-core install chromium`). Use `chromium` quando não houver Chrome instalado (servidor, CI, container).
 - Saída com navegador: JSON com `status, final, title, meta, text, imgs, datas, posts, links`.
 - Imagens do CDN (`cdninstagram`, `fbcdn`) baixam direto, sem o freio.
 

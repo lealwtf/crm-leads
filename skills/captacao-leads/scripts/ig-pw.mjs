@@ -2,10 +2,21 @@
 // Não chame direto: use ig-get.py com IG_NAVEGADOR=1, que aplica o freio global (1 por vez, intervalo, resfriamento).
 // Precisa de playwright-core resolvível (npm i playwright-core) ou PLAYWRIGHT_CORE=/caminho/playwright-core/index.mjs,
 // e de um Chrome instalado (IG_CANAL=chrome, padrão) ou Chromium do Playwright (IG_CANAL=chromium).
-const { chromium } = await import(process.env.PLAYWRIGHT_CORE || 'playwright-core')
+// CHECAR_CANAL também vale (mesma variável do verificador); IG_CANAL vence se as duas existirem.
+// Sem o pacote ao lado do script, procura a partir da pasta atual (skill copiada para fora do clone).
+let chromium
+try {
+  let alvo = process.env.PLAYWRIGHT_CORE
+  if (!alvo) {
+    try { alvo = 'playwright-core'; ({ chromium } = await import(alvo)) }
+    catch { const { createRequire } = await import('node:module'); const { pathToFileURL } = await import('node:url'); alvo = pathToFileURL(createRequire(process.cwd() + '/x.js').resolve('playwright-core')).href }
+  }
+  if (!chromium) { const m = await import(alvo); chromium = m.chromium || m.default?.chromium }
+  if (!chromium) throw new Error('sem chromium')
+} catch (e) { console.error('playwright-core nao encontrado: rode "npm i" na raiz do clone ou defina PLAYWRIGHT_CORE=/caminho/playwright-core/index.mjs'); process.exit(2) }
 
 const url = process.argv[2]
-const canal = process.env.IG_CANAL || 'chrome'
+const canal = process.env.IG_CANAL || process.env.CHECAR_CANAL || 'chrome'
 const b = await chromium.launch(canal === 'chromium' ? { headless: true } : { channel: canal, headless: true })
 const out = { url }
 try {
